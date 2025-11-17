@@ -21,3 +21,12 @@ In the second version, there are a few upgrades:
     <li> Show total cost. </li>
     <li> Still possible to reset the cart. </li>
 </ul>
+
+## Version 3.0
+
+### What's New
+
+<ul>
+    <li>Improved graphics;</li>
+    <li>Added new buttons to insert amount to buy.</li>
+</ul>
