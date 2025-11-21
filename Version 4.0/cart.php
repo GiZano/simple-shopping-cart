@@ -31,6 +31,7 @@
     // set or load cart status and total cost status
     $cart       = ( isset($_SESSION['cart']) ? $_SESSION['cart'] : []);
     $total_cost = ( isset($_SESSION['total_cost']) ? $_SESSION['total_cost'] : 0);
+    $messaggio = "";
 
     // if we got a POST request with an id
     if( $_SERVER['REQUEST_METHOD'] == "POST" && isset( $_POST['product_id'] )){
@@ -41,7 +42,6 @@
         $product = $_POST['product_id'];
         $cost    = $products[$product]['price'];
         $action  = $_POST['action'];
-        $messaggio = "";
 
 
         $count = 0;
@@ -83,7 +83,7 @@
         }
     }
 
-    if( $_SERVER['REQUEST_METHOD'] == "GET" && $_GET['action'] == 'empty'){
+    if( $_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['action']) && $_GET['action'] == 'empty'){
         $cart = [];
         $total_cost = 0;
         $messaggio = "<p style='color:blue;'> Shopping cart emptied! </p>";
