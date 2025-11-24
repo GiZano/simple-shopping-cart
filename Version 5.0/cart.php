@@ -13,7 +13,7 @@
 
         "p2" => [
             "name"   => "Bread",
-            "price" =>  1.20
+            "price" =>  1.2
         ],
 
         "p3" => [
@@ -23,7 +23,7 @@
 
         "p4" => [
             "name"   => "Cookies",
-            "price" => 2.80
+            "price" => 2.8
         ]
     ];
 
@@ -47,7 +47,7 @@
         $count = 0;
 
 
-        if( $action == "Add 1"){
+        if( $action == "Add 1" || $action == "+"){
             $count = 1;
             $messaggio = "<p style='color:green;'> Added 1 " . $products[$product]['name'] . "</p>";
         }elseif( $action == "Add 10"){
@@ -56,19 +56,16 @@
         }elseif( $action == "Add 100"){
             $count = 100;
             $messaggio = "<p style='color:green;'> Added 100 " . $products[$product]['name'] . "</p>";
-        }elseif( $action == "+"){
-            $messaggio = "<p style='color:green;'> Added 1 " . $products[$product]['name'] . "</p>";
-            $count = 1;
         }elseif( $action == "-"){
             $messaggio = "<p style='color:red;'> Removed 1 " . $products[$product]['name'] . "</p>";
             $count = -1;
         }
 
         if( isset($cart[$product])){
-            if( $count > 0 || ( ( -1 * $count ) < $cart[$product] )){
+            if(( ( -1 * $count ) < $cart[$product] )){
                 $cart[$product] += $count;
                 $total_cost += $cost * $count;
-            }elseif($count < 0 && ((-1 * $count) == $cart[$product])){
+            }elseif($count < 0 && $cart[$product] + $count == 0){
                 $cart[$product] = 0;
                 $total_cost = 0;
             }else{
@@ -78,6 +75,9 @@
             if( $count > 0 || ( ( -1 * $count ) <= $cart[$product] )){
                 $cart[$product] = $count;
                 $total_cost += $cost * $count;
+                $messaggio = "<p style='color:blue;'> Can't remove " . (-1 * $count) . " " . $products[$product]['name'] . "</p>";
+            }else{
+                $messaggio = "<p style='color:blue;'> Can't remove " . (-1 * $count) . " " . $products[$product]['name'] . "</p>";
             }
         }
     }
@@ -101,7 +101,7 @@
     <title>Simple Shopping Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
-    <link rel="icon" type="image/x-icon" href="./media/icon.png">
+    <link rel="icon" type="image/x-icon" href=".\media\icon.png">
 </head>
 <body>
     <div class="container mt-5">
